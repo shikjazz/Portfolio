@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="description" content="Shikhar Sharma – Product Design Portfolio. A showcase of user‑centered design projects, work experience, certifications, skills, and testimonials." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shikhar Sharma – Product Design Portfolio</title>
+  <!-- Link to PWA manifest -->
+  <link rel="manifest" href="manifest.json">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f9f9f9;
+      scroll-behavior: smooth;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    /* Dark mode styles */
+    body.dark-mode {
+      background-color: #222;
+      color: #ddd;
+    }
+    a {
+      color: #1e90ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /* Header */
+    header {
+      background: #333;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+    }
+    header p {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    /* Dark mode toggle button */
+    #theme-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: #1e90ff;
+      border: none;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    #theme-toggle:hover {
+      background: #0d74d1;
+    }
+    /* Navigation */
+    nav {
+      background: #444;
+      display: flex;
+      justify-content: center;
+      padding: 1rem;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: #fff;
+      margin: 0.5rem 1rem;
+      font-size: 1rem;
+    }
+    /* Main Container */
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem 1rem;
+    }
+    /* Section Titles */
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #1e90ff;
+      padding-bottom: 0.3rem;
+    }
+    /* Grid Layout for Sections */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    /* Card Styles */
+    .card {
+      background: #fff;
+      border-radius: 5px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    body.dark-mode .card {
+      background: #333;
+    }
+    .card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #1e90ff;
+    }
+    .card p {
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .card button {
+      background: #1e90ff;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .card button:hover {
+      background: #0d74d1;
+    }
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.7);
+      padding-top: 50px;
+    }
+    .modal-content {
+      background-color: #fefefe;
+      margin: auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 5px;
+      position: relative;
+    }
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: #000;
+    }
+    /* Testimonials Section */
+    #testimonials {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+    #testimonials .testimonial {
+      margin-bottom: 1.5rem;
+    }
+    #testimonials .testimonial p {
+      font-style: italic;
+    }
+    #testimonials .testimonial span {
+      display: block;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+    /* Blog/Case Studies Section */
+    #blog {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+    }
+    /* Footer */
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.5rem;
+      }
+      nav a {
+        margin: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header role="banner">
+    <h1>Shikhar Sharma</h1>
+    <p>Product Design Enthusiast | UI/UX Innovator | Problem Solver</p>
+    <button id="theme-toggle" aria-label="Toggle Dark Mode">Dark Mode</button>
+  </header>
+  
+  <!-- Navigation -->
+  <nav role="navigation">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#skills">Skills</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#blog">Blog</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  
+  <!-- Main Content -->
+  <main>
+    <!-- About Section -->
+    <section id="about" aria-label="About Me">
+      <h2>About Me</h2>
+      <p>
+        I’m Shikhar Sharma, a product design enthusiast combining a robust technical background with a passion for user‑centered design. Currently pursuing my B.Tech in Computer Science Engineering, I specialize in transforming complex challenges into elegant, intuitive digital experiences. I thrive on creative problem solving, iterative design, and collaboration.
+      </p>
+    </section>
+    
+    <!-- Projects Section -->
+    <section id="projects" aria-label="Projects">
+      <h2>Featured Projects</h2>
+      <div class="grid">
+        <!-- Project Card 1 -->
+        <div class="card fade-in">
+          <h3>CityRide – Urban Ride Experience Redesign</h3>
+          <p>A redesign of a ride‑sharing app to simplify urban mobility for diverse users.</p>
+          <button class="open-modal" data-modal="modal1">Read More</button>
+        </div>
+        <!-- Project Card 2 -->
+        <div class="card fade-in">
+          <h3>UrbanFlow – Micro-Mobility App Experience</h3>
+          <p>A mobile‑first design for a micro‑mobility service featuring dynamic interactions and intuitive navigation.</p>
+          <button class="open-modal" data-modal="modal2">Read More</button>
+        </div>
+        <!-- Project Card 3 -->
+        <div class="card fade-in">
+          <h3>SmartMerch – Seamless Merchant Onboarding</h3>
+          <p>An end‑to‑end onboarding flow for merchants, reducing friction and enhancing satisfaction.</p>
+          <button class="open-modal" data-modal="modal3">Read More</button>
+        </div>
+        <!-- Additional Project Card -->
+        <div class="card fade-in">
+          <h3>Freelance UI/UX Consultant</h3>
+          <p>Delivered bespoke design solutions for local startups, optimizing digital interfaces for improved engagement.</p>
+          <button class="open-modal" data-modal="modal4">Read More</button>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Experience Section -->
+    <section id="experience" aria-label="Work Experience">
+      <h2>Work Experience</h2>
+      <div class="grid">
+        <div class="card fade-in">
+          <h3>Freelance UI/UX Consultant</h3>
+          <p>
+            Collaborated with local startups to refine digital experiences through iterative design, user testing, and data-driven insights.
+          </p>
+        </div>
+        <div class="card fade-in">
+          <h3>Hackathon Winner – Design Challenge 2023</h3>
+          <p>
+            Led a team to develop a user‑centric design solution in a 48‑hour hackathon, earning accolades for innovation and execution.
+          </p>
+        </div>
+        <div class="card fade-in">
+          <h3>Academic Design Project</h3>
+          <p>
+            Redesigned an e‑commerce interface as part of my coursework, focusing on usability, accessibility, and aesthetic appeal.
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Certifications Section -->
+    <section id="certifications" aria-label="Certifications and Achievements">
+      <h2>Certifications &amp; Achievements</h2>
+      <ul>
+        <li>Google UX Design Professional Certificate (In Progress)</li>
+        <li>Certified Full Stack Web Developer – edX</li>
+        <li>Winner: National Innovation Hackathon 2023 (UI/UX Category)</li>
+        <li>Finalist: Regional Design Challenge 2023</li>
+        <li>Patent Granted: Innovative Digital Interaction Framework (2022)</li>
+      </ul>
+    </section>
+    
+    <!-- Skills Section -->
+    <section id="skills" aria-label="Skills">
+      <h2>Skills &amp; Tools</h2>
+      <ul>
+        <li><strong>Design &amp; Prototyping:</strong> Figma, Sketch, Adobe XD, InVision</li>
+        <li><strong>User Research:</strong> Usability Testing, Persona Development, Journey Mapping</li>
+        <li><strong>Visual &amp; Interaction Design:</strong> Adobe Photoshop, Illustrator, Motion Design</li>
+        <li><strong>Collaboration:</strong> Jira, Confluence, Agile Methodologies</li>
+      </ul>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" aria-label="Testimonials">
+      <h2>Testimonials</h2>
+      <div class="grid">
+        <div class="card fade-in">
+          <p>"Shikhar's design thinking is truly innovative – he transformed our digital product with his keen eye for user experience."</p>
+          <span>– Client A</span>
+        </div>
+        <div class="card fade-in">
+          <p>"An excellent collaborator who combines technical expertise with creative design. Highly recommended!"</p>
+          <span>– Client B</span>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Blog/Case Studies Section -->
+    <section id="blog" aria-label="Latest Insights">
+      <h2>Latest Insights</h2>
+      <div class="card fade-in">
+        <h3>Design Thinking in Action</h3>
+        <p>A case study on applying design thinking methodologies in a live project environment.</p>
+        <a href="#" aria-label="Read the full case study">Read More</a>
+      </div>
+    </section>
+    
+    <!-- Contact Section -->
+    <section id="contact" aria-label="Contact">
+      <h2>Contact &amp; Connect</h2>
+      <p>
+        I’m excited to collaborate on transformative digital experiences. Let’s connect!
+      </p>
+      <p>Email: <a href="mailto:sg7039@srmist.edu.in">sg7039@srmist.edu.in</a></p>
+      <p>Mobile: +91‑8696898271</p>
+      <p>LinkedIn: <a href="https://linkedin.com/in/shikhar-sharma-275544227" target="_blank">linkedin.com/in/shikhar-sharma-275544227</a></p>
+    </section>
+  </main>
+  
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <p>&copy; 2025 Shikhar Sharma. All rights reserved.</p>
+  </footer>
+  
+  <!-- Modal Structures -->
+  <!-- Modal 1 -->
+  <div id="modal1" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content" tabindex="0">
+      <span class="close" data-modal="modal1" aria-label="Close">&times;</span>
+      <h3>CityRide – Urban Ride Experience Redesign</h3>
+      <p><strong>Overview:</strong> A comprehensive redesign aimed at simplifying the ride‑sharing process in urban areas.</p>
+      <p><strong>Process:</strong> Conducted extensive user interviews and competitive analysis. Developed low‑fidelity sketches and high‑fidelity prototypes using Figma. Optimized booking flows and micro‑interactions.</p>
+      <p><strong>Outcome:</strong> Reduced cognitive load and improved accessibility while creating a scalable design system.</p>
+    </div>
+  </div>
+  
+  <!-- Modal 2 -->
+  <div id="modal2" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content" tabindex="0">
+      <span class="close" data-modal="modal2" aria-label="Close">&times;</span>
+      <h3>UrbanFlow – Micro-Mobility App Experience</h3>
+      <p><strong>Overview:</strong> A mobile‑first design for a micro‑mobility service focusing on real‑time data and intuitive navigation.</p>
+      <p><strong>Process:</strong> Mapped user journeys, developed interactive prototypes, and implemented scroll-triggered animations to highlight key data.</p>
+      <p><strong>Outcome:</strong> Enhanced user engagement with a fast, responsive, and visually appealing interface.</p>
+    </div>
+  </div>
+  
+  <!-- Modal 3 -->
+  <div id="modal3" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content" tabindex="0">
+      <span class="close" data-modal="modal3" aria-label="Close">&times;</span>
+      <h3>SmartMerch – Seamless Merchant Onboarding</h3>
+      <p><strong>Overview:</strong> An end‑to‑end solution for merchant onboarding into a digital commerce ecosystem.</p>
+      <p><strong>Process:</strong> Conducted stakeholder interviews, designed interactive wireframes, and produced high‑fidelity prototypes.</p>
+      <p><strong>Outcome:</strong> Streamlined onboarding that reduced friction and improved satisfaction.</p>
+    </div>
+  </div>
+  
+  <!-- Modal 4 -->
+  <div id="modal4" class="modal" aria-hidden="true" role="dialog">
+    <div class="modal-content" tabindex="0">
+      <span class="close" data-modal="modal4" aria-label="Close">&times;</span>
+      <h3>Freelance UI/UX Consultant</h3>
+      <p><strong>Overview:</strong> Delivered bespoke design solutions for local startups across diverse industries.</p>
+      <p><strong>Process:</strong> Collaborated with clients to identify challenges, iterated on prototypes, and implemented data-driven design solutions.</p>
+      <p><strong>Outcome:</strong> Enhanced digital interfaces and improved engagement metrics.</p>
+    </div>
+  </div>
+  
+  <!-- JavaScript for Modal, Dark Mode, and Scroll Animations -->
+  <script>
+    // Dark mode toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
+    });
+    
+    // Modal functionality
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        modal.querySelector('.modal-content').focus();
+      }
+    }
+    function closeModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (modal) {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+      }
+    }
+    const openButtons = document.querySelectorAll('.open-modal');
+    openButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        openModal(modalId);
+      });
+    });
+    const closeButtons = document.querySelectorAll('.close');
+    closeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const modalId = this.getAttribute('data-modal');
+        closeModal(modalId);
+      });
+    });
+    window.addEventListener('click', function(event) {
+      if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+        event.target.setAttribute('aria-hidden', 'true');
+      }
+    });
+
+    // IntersectionObserver for fade-in animations
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.3,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+    
+    // Register Service Worker for PWA
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('service-worker.js')
+        .then(() => console.log('Service Worker Registered'))
+        .catch(err => console.log('Service Worker Registration Failed:', err));
+    }
+  </script>
+</body>
+</html>
